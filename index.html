@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minijuego de Trivia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        #game-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minijuego de Trivia</h1>
+    <div id="game-container">
+        <div id="score-board">
+            <p>Puntos: <span id="score">0</span></p>
+            <p>Respuestas Correctas: <span id="correct">0</span></p>
+            <p>Respuestas Incorrectas: <span id="incorrect">0</span></p>
+        </div>
+        
+        <div id="level1" class="level">
+            <h2>Nivel 1: Verdadero o Falso</h2>
+            <p>La postura correcta al sentarse es mantener la espalda recta.</p>
+            <button onclick="checkAnswer(true, true, 'Es cierto, mantener la espalda recta previene dolores.')">Verdadero</button>
+            <button onclick="checkAnswer(false, true, 'Es cierto, mantener la espalda recta previene dolores.')">Falso</button>
+        </div>
+        
+        <div id="level2" class="level hidden">
+            <h2>Nivel 2: Verdadero o Falso</h2>
+            <p>Es recomendable cruzar las piernas al sentarse para mejorar la circulación.</p>
+            <button onclick="checkAnswer(true, false, 'Falso, cruzar las piernas puede dificultar la circulación.')">Verdadero</button>
+            <button onclick="checkAnswer(false, false, 'Falso, cruzar las piernas puede dificultar la circulación.')">Falso</button>
+        </div>
+        
+        <div id="level3" class="level hidden">
+            <h2>Nivel 3: Verdadero o Falso</h2>
+            <p>Utilizar el teléfono móvil por mucho tiempo puede provocar dolor de cuello.</p>
+            <button onclick="checkAnswer(true, true, 'Cierto, mirar hacia abajo puede tensar los músculos del cuello.')">Verdadero</button>
+            <button onclick="checkAnswer(false, true, 'Cierto, mirar hacia abajo puede tensar los músculos del cuello.')">Falso</button>
+        </div>
+
+        <div id="level4" class="level hidden">
+            <h2>Nivel 4: Verdadero o Falso</h2>
+            <p>Es mejor trabajar en una posición de pie que sentado.</p>
+            <button onclick="checkAnswer(true, false, 'Falso, es importante alternar entre posiciones para evitar fatiga.')">Verdadero</button>
+            <button onclick="checkAnswer(false, false, 'Falso, es importante alternar entre posiciones para evitar fatiga.')">Falso</button>
+        </div>
+
+        <div id="level5" class="level hidden">
+            <h2>Nivel 5: Verdadero o Falso</h2>
+            <p>La postura correcta al levantar objetos pesados es agacharse con la espalda recta.</p>
+            <button onclick="checkAnswer(true, true, 'Cierto, agacharse con la espalda recta reduce el riesgo de lesiones.')">Verdadero</button>
+            <button onclick="checkAnswer(false, true, 'Cierto, agacharse con la espalda recta reduce el riesgo de lesiones.')">Falso</button>
+        </div>
+
+        <div id="level6" class="level hidden">
+            <h2>Nivel 6: Verdadero o Falso</h2>
+            <p>La postura adecuada al leer es mantener el libro a la altura de los ojos.</p>
+            <button onclick="checkAnswer(true, true, 'Cierto, esto ayuda a prevenir la fatiga ocular.')">Verdadero</button>
+            <button onclick="checkAnswer(false, true, 'Cierto, esto ayuda a prevenir la fatiga ocular.')">Falso</button>
+        </div>
+
+        <div id="level7" class="level hidden">
+            <h2>Nivel 7: Verdadero o Falso</h2>
+            <p>Es recomendable mantener el monitor a la altura de los ojos al trabajar en una computadora.</p>
+            <button onclick="checkAnswer(true, true, 'Cierto, esto evita tensiones en el cuello.')">Verdadero</button>
+            <button onclick="checkAnswer(false, true, 'Cierto, esto evita tensiones en el cuello.')">Falso</button>
+        </div>
+
+        <div id="level8" class="level hidden">
+            <h2>Nivel 8: Opción Múltiple</h2>
+            <p>¿Cuál es la postura correcta al sentarse?</p>
+            <button onclick="checkAnswer('a', 'b', 'Esta postura puede causar molestias en la espalda.')">A) <img src="ruta/de/imagen1.jpg" alt="Opción A"></button>
+            <button onclick="checkAnswer('b', 'b', 'Correcto, esta postura ayuda a mantener la espalda recta.')">B) <img src="ruta/de/imagen2.jpg" alt="Opción B"></button>
+            <button onclick="checkAnswer('c', 'c', 'Esta postura puede causar fatiga muscular.')">C) <img src="ruta/de/imagen3.jpg" alt="Opción C"></button>
+        </div>
+
+        <div id="level9" class="level hidden">
+            <h2>Nivel 9: Opción Múltiple</h2>
+            <p>¿Cuál es la postura correcta al levantar un objeto pesado?</p>
+            <button onclick="checkAnswer('a', 'a', 'Correcto, agacharse con la espalda recta es lo mejor.')">A) <img src="ruta/de/imagen4.jpg" alt="Opción A"></button>
+            <button onclick="checkAnswer('b', 'b', 'Esta postura puede causar lesiones.')">B) <img src="ruta/de/imagen5.jpg" alt="Opción B"></button>
+            <button onclick="checkAnswer('c', 'c', 'Esta postura puede causar molestias.')">C) <img src="ruta/de/imagen6.jpg" alt="Opción C"></button>
+        </div>
+
+        <div id="level10" class="level hidden">
+            <h2>Nivel 10: Opción Múltiple</h2>
+            <p>¿Cuál es la postura correcta al usar el teléfono móvil?</p>
+            <button onclick="checkAnswer('a', 'b', 'Falso, esta postura puede causar dolor en el cuello.')">A) <img src="ruta/de/imagen7.jpg" alt="Opción A"></button>
+            <button onclick="checkAnswer('b', 'b', 'Correcto, mantener el teléfono a la altura de los ojos es lo mejor.')">B) <img src="ruta/de/imagen8.jpg" alt="Opción B"></button>
+            <button onclick="checkAnswer('c', 'c', 'Esta postura puede causar tensión en la muñeca.')">C) <img src="ruta/de/imagen9.jpg" alt="Opción C"></button>
+        </div>
+
+        <div id="level11" class="level hidden">
+            <h2>Nivel 11: Opción Múltiple</h2>
+            <p>¿Cuál es la postura correcta al leer?</p>
+            <button onclick="checkAnswer('a', 'c', 'Esta postura puede causar tensión ocular.')">A) <img src="ruta/de/imagen10.jpg" alt="Opción A"></button>
+            <button onclick="checkAnswer('b', 'b', 'Correcto, mantener el libro a la altura de los ojos es ideal.')">B) <img src="ruta/de/imagen11.jpg" alt="Opción B"></button>
+            <button onclick="checkAnswer('c', 'c', 'Esta postura puede causar molestias en el cuello.')">C) <img src="ruta/de/imagen12.jpg" alt="Opción C"></button>
+        </div>
+
+        <div id="level12" class="level hidden">
+            <h2>Nivel 12: Opción Múltiple</h2>
+            <p>¿Cuál es la postura correcta al trabajar en la computadora?</p>
+            <button onclick="checkAnswer('a', 'a', 'Correcto, mantener el monitor a la altura de los ojos es importante.')">A) <img src="ruta/de/imagen13.jpg" alt="Opción A"></button>
+            <button onclick="checkAnswer('b', 'b', 'Esta postura puede causar fatiga en los ojos.')">B) <img src="ruta/de/imagen14.jpg" alt="Opción B"></button>
+            <button onclick="checkAnswer('c', 'c', 'Esta postura puede causar problemas en la espalda.')">C) <img src="ruta/de/imagen15.jpg" alt="Opción C"></button>
+        </div>
+
+        <div id="result" class="hidden">
+            <h2>¡Felicitaciones!</h2>
+            <p>Has completado el juego. Tu puntaje es: <span id="final-score"></span></p>
+            <p id="score-message"></p>
+            <button onclick="reloadGame()">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <script>
+        let currentLevel = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        const totalLevels = 12;
+
+        function checkAnswer(userAnswer, correctAnswer, explanation) {
+            if (userAnswer === correctAnswer) {
+                score += 10; // Aumentar puntos
+                correctAnswers++;
+                alert("¡Respuesta correcta! " + explanation);
+            } else {
+                incorrectAnswers++;
+                alert("Respuesta incorrecta. " + explanation);
+            }
+
+            updateScoreBoard();
+            currentLevel++;
+            if (currentLevel < totalLevels) {
+                showLevel(currentLevel);
+            } else {
+                showResult();
+            }
+        }
+
+        function updateScoreBoard() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('correct').textContent = correctAnswers;
+            document.getElementById('incorrect').textContent = incorrectAnswers;
+        }
+
+        function showLevel(level) {
+            const levels = document.querySelectorAll('.level');
+            levels.forEach((l, index) => {
+                l.classList.add('hidden');
+                if (index === level) {
+                    l.classList.remove('hidden');
+                }
+            });
+        }
+
+        function showResult() {
+            document.getElementById('game-container').classList.add('hidden');
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+
+            let scoreMessage;
+            if (score === 120) {
+                scoreMessage = "Eres un experto en posturas.";
+            } else if (score >= 100) {
+                scoreMessage = "Sabes mucho sobre posturas.";
+            } else if (score >= 60) {
+                scoreMessage = "Necesitas aprender más.";
+            } else if (score >= 30) {
+                scoreMessage = "Deberías revisar la información.";
+            } else {
+                scoreMessage = "¡Es un buen comienzo! Sigue aprendiendo.";
+            }
+
+            document.getElementById('score-message').textContent = scoreMessage;
+        }
+
+        function reloadGame() {
+            location.reload(); // Recarga la página para reiniciar el juego
+        }
+
+        // Mostrar el primer nivel al cargar la página
+        showLevel(currentLevel);
+        updateScoreBoard(); // Inicializa el tablero de puntuación
+    </script>
+</body>
+</html>
